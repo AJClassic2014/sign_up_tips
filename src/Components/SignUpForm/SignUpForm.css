@@ -1,0 +1,61 @@
+div.signUpFormContainer {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #6299d4;
+}
+
+form.signUpForm {
+  width: 300px;
+}
+
+div.imageContainer {
+  text-align: center;
+  margin-bottom: -15px;
+}
+
+img.signUpLogo {
+  width: 80px;
+  height: 80px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #888888;
+}
+
+div.inputsContainer {
+  background: white;
+  border-radius: 5px;
+  padding: 0 16px;
+  box-shadow: 0 0 10px #888888;
+}
+
+form.signUpForm input {
+  outline: 0;
+  border: 0;
+  background: transparent;
+  font-size: 18px;
+  padding: 20px 20px;
+}
+
+form.signUpForm input:not(:last-of-type) {
+  border-bottom: 1px solid #d6d6d6;
+}
+div.inputsContainer {
+  display: grid;
+}
+
+div.submitContainer {
+  margin-top: 20px;
+}
+
+form.signUpForm button[type="submit"] {
+  font-size: 18px;
+  color: #64852b;
+  background: #c7ed83;
+  border-radius: 5px;
+  padding: 10px 0;
+  width: 100%;
+  box-shadow: 0 0 10px #888888;
+}
