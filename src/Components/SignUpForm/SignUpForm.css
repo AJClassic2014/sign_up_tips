@@ -50,6 +50,17 @@ div.submitContainer {
   margin-top: 20px;
 }
 
+div.error {
+  margin-top: 20px;
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  padding: .75rem 1rem;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  font-size: 14px;
+}
+
 form.signUpForm button[type="submit"] {
   font-size: 18px;
   color: #64852b;
