@@ -1,17 +1,17 @@
-import React from 'react';
-import logo from '../../images/logo.svg';
-import signUp from '../../apis/signUp';
-import './SignUpForm.css';
+import React from "react";
+import signUp from "../../apis/signUp";
+import { withRouter } from 'react-router-dom';
+import "./SignUpForm.css";
 
 class SignUpForm extends React.Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
-      email: '',
-      password: '',
-      confirmPassword: '',
-      errorMessages: [],
+      email: "",
+      password: "",
+      confirmPassword: "",
+      errorMessages: []
     };
 
     this.onEmailChange = this.onEmailChange.bind(this);
@@ -21,30 +21,26 @@ class SignUpForm extends React.Component {
 
   onEmailChange(value) {
     this.setState({
-      email: value,
-    })
+      email: value
+    });
   }
 
   onPasswordChange(value) {
     this.setState({
-      password: value,
-    })
-  } 
-  
+      password: value
+    });
+  }
+
   onConfirmPasswordChange(value) {
     this.setState({
-      confirmPassword: value,
-    })
+      confirmPassword: value
+    });
   }
 
   setErrorMessages(value) {
     this.setState({
-      errorMessages: value,
+      errorMessages: value
     });
-  }
-
-  onSubmit() {
-    
   }
 
   render() {
@@ -53,40 +49,52 @@ class SignUpForm extends React.Component {
     return (
       <React.Fragment>
         <div className="signUpFormContainer">
-          <form 
-            className="signUpForm" 
-            onSubmit={(event) => {
+          <form
+            className="signUpForm"
+            onSubmit={event => {
               event.preventDefault();
               this.setErrorMessages([]);
 
               let errors = [];
 
               if (!email) {
-                errors = [...errors, {
-                  className: 'email',
-                  text: 'Please input your email',
-                }];
+                errors = [
+                  ...errors,
+                  {
+                    className: "email",
+                    text: "Please input your email"
+                  }
+                ];
               }
 
               if (!password) {
-                errors = [...errors, {
-                  className: 'password',
-                  text: 'Please input your password',
-                }];
+                errors = [
+                  ...errors,
+                  {
+                    className: "password",
+                    text: "Please input your password"
+                  }
+                ];
               }
 
               if (!confirmPassword) {
-                errors = [...errors, {
-                  className: 'confirmPassword',
-                  text: 'Please input your confirm password',
-                }];
+                errors = [
+                  ...errors,
+                  {
+                    className: "confirmPassword",
+                    text: "Please input your confirm password"
+                  }
+                ];
               }
 
               if (password !== confirmPassword) {
-                errors = [...errors, {
-                  className: 'differentPasswordError',
-                  text: 'Please input the same password',
-                }];
+                errors = [
+                  ...errors,
+                  {
+                    className: "differentPasswordError",
+                    text: "Please input the same password"
+                  }
+                ];
               }
 
               if (errors.length > 0) {
@@ -94,47 +102,75 @@ class SignUpForm extends React.Component {
                 return;
               }
 
-              signUp();
+              const { history } = this.props;
+
+              signUp(email, password)
+                .then(() => history.push('/'))
+                .catch(({ response: { data: { error: { message, details } } } }) => alert(message));
             }}
           >
-            <div className="imageContainer">
-              <img className="signUpLogo" src={logo} alt="SIGN UP" />
-            </div>
             <div className="inputsContainer">
-              <input 
+              <div className="info">
+                <h1>Sign Up</h1>
+                <p>Please fill in this form to create an account.</p>
+                <hr />
+              </div>
+              <label htmlFor="email" className="email">
+                <b>Email:</b>
+              </label>
+              <input
                 className="email"
-                type="text" 
-                placeholder="Email" 
+                type="text"
+                placeholder="Email"
                 value={email}
                 onChange={({ target: { value } }) => this.onEmailChange(value)}
               />
-              <input 
+              <label htmlFor="password" className="password">
+                <b>Password:</b>
+              </label>
+              <input
                 className="password"
-                type="password" 
-                placeholder="Password" 
+                type="password"
+                placeholder="Password"
                 value={password}
-                onChange={({ target: { value } }) => this.onPasswordChange(value)}
+                onChange={({ target: { value } }) =>
+                  this.onPasswordChange(value)
+                }
               />
-              <input 
+              <label htmlFor="confirmPassword">
+                <b>Confirm Password:</b>
+              </label>
+              <input
                 className="confirmPassword"
-                type="password" 
-                placeholder="Confirm password" 
+                type="password"
+                placeholder="Confirm password"
                 value={confirmPassword}
-                onChange={({ target: { value } }) => this.onConfirmPasswordChange(value)}
+                onChange={({ target: { value } }) =>
+                  this.onConfirmPasswordChange(value)
+                }
               />
+              <span className="rememberMe">
+                <input type="checkbox" />
+                Remember me
+              </span>
+              <p>
+                By creating an account you agree to our <a href="">Terms & Privacy.</a>
+              </p>
+              <div className="submitContainer">
+                <button type="submit" className="sign-up">
+                  Sign Up
+                </button>
+              </div>
             </div>
-           {errorMessages.length > 0 && (
+            {errorMessages.length > 0 && (
               <div className="error">
                 {errorMessages.map(({ className, text }) => (
-                  <p key={className} className={className}>{text}</p>
+                  <p key={className} className={className}>
+                    {text}
+                  </p>
                 ))}
               </div>
             )}
-            <div className="submitContainer">
-              <button type="submit">
-                Sign Up
-              </button>
-            </div>
           </form>
         </div>
       </React.Fragment>
@@ -142,4 +178,4 @@ class SignUpForm extends React.Component {
   }
 }
 
-export default SignUpForm;
+export default withRouter(SignUpForm);

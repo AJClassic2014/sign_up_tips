@@ -1,6 +1,6 @@
 div.signUpFormContainer {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,14 +16,6 @@ div.imageContainer {
   margin-bottom: -15px;
 }
 
-img.signUpLogo {
-  width: 80px;
-  height: 80px;
-  background: white;
-  border-radius: 50%;
-  box-shadow: 0 0 10px #888888;
-}
-
 div.inputsContainer {
   background: white;
   border-radius: 5px;
@@ -31,19 +23,34 @@ div.inputsContainer {
   box-shadow: 0 0 10px #888888;
 }
 
-form.signUpForm input {
-  outline: 0;
-  border: 0;
-  background: transparent;
-  font-size: 18px;
-  padding: 20px 20px;
+form.signUpForm input[type=text], form.signUpForm input[type=password] {
+  padding:10px;
+  width:100%;
+  opacity: 0.9;
+  box-sizing: border-box;
+  font-size: 12px;
+  margin:5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1; 
 }
 
-form.signUpForm input:not(:last-of-type) {
-  border-bottom: 1px solid #d6d6d6;
+form.signUpForm .input[type=checkbox] {
+  display:inline;
 }
+
+form.signUpForm input:focus {
+  background-color:#ddd;
+  outline:0;
+}
+
+.rememberMe {
+  display: flex;
+}
+
 div.inputsContainer {
   display: grid;
+ 
 }
 
 div.submitContainer {
@@ -61,12 +68,15 @@ div.error {
   font-size: 14px;
 }
 
-form.signUpForm button[type="submit"] {
+form.signUpForm button[type="submit"].sign-up{
+  width:100%;
   font-size: 18px;
-  color: #64852b;
-  background: #c7ed83;
-  border-radius: 5px;
-  padding: 10px 0;
-  width: 100%;
-  box-shadow: 0 0 10px #888888;
+  border:none;
+  background-color: #4CAF50;
+  color:white;
+  margin: 10px 0;
+  padding:14px 20px;
+  cursor: pointer;
 }
+
+

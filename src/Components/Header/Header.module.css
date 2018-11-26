@@ -1,0 +1,24 @@
+.navbar {
+  background-color: #343a40;
+  padding: 1rem 1.5rem;
+  display: flex;
+}
+
+.left {
+  flex: 1;
+}
+
+.right {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 0.5rem;
+}
+
+.link {
+  color: rgba(255,255,255,.5);
+  text-decoration: none;
+}
+
+.active {
+  color: white;
+}

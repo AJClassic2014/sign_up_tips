@@ -1,0 +1,8 @@
+.link {
+  color: rgba(255,255,255,.5);
+  text-decoration: none;
+}
+
+.active {
+  color: white;
+}
